@@ -1,0 +1,19 @@
+.tools {
+	margin: 4px;
+}
+.tools-open > button {
+	transform: scale(1.2) rotate(45deg);
+}
+.tools-ext-close {
+	width: 100%;
+	position: absolute;
+	transform: translate(0px, -98%);
+	transition: transform 1000ms
+
+}
+.tools-ext-open {
+	position: absolute;
+	width: 100%;
+	transform: translate(0px, 0px);
+	transition: transform 1000ms;
+}

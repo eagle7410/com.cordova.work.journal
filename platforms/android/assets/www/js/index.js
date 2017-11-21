@@ -17,30 +17,146 @@
  * under the License.
  */
 var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+	// Application Constructor
+	initialize: function () {
+		document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
+		if (!window.cordova) {
+			this.receivedEvent('deviceready');
+		}
+	},
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+	// deviceready Event Handler
+	//
+	// Bind any cordova events here. Common events are:
+	// 'pause', 'resume', etc.
+	onDeviceReady: function () {
+		this.receivedEvent('deviceready');
+	},
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+	// Update DOM on a Received Event
+	receivedEvent: function (id) {
+		var that = this;
 
-        console.log('Received Event: ' + id);
-    }
+		that._db = new window.BrowserDataBaseClass({name: 'pass_store'});
+		if (!window.cordova) {
+			window.cordova = {};
+		}
+
+		window.cordova.db = that._db;
+
+		that._db.init(that._db_struct())
+			.then(function () {
+				return that._db.getAll('users');
+			})
+			.then(function (users) {
+
+				if (users.length) {
+					return that.runReact();
+				}
+
+				return that._db.insert('users', ['_id', 'login', 'pass'], [1, 'test', '52c453a352e11c94ea95f4a6ac4c1354bd762f6e57dbcd54012f50684be17694'])
+					.then(function () {
+						return that._db.insert('categories', ['id', 'name'], [
+							[2, 'All Categories'],
+							[3, 'Unknown']
+						])
+					})
+					.then(function () {
+						that.runReact();
+					})
+					.catch(that._catch);
+			})
+			.catch(that._catch);
+	},
+	_catch : function (err) {
+		console.log('Error :', err);
+	},
+	_db_struct: function () {
+		var that = this;
+		var constant = that._db.queryConst();
+
+		return {
+			users: {
+				_id: {
+					type: constant.TYPE_INT,
+					pk: {
+						order: constant.ASC
+					}
+				},
+				login: {
+					type: constant.TYPE_CHAR + '(20)',
+					require: true,
+					unique: true
+				},
+				pass: {
+					type: constant.TYPE_CHAR
+				}
+			},
+			settings: {
+				id: {
+					type: constant.TYPE_INT,
+					pk: {
+						order: constant.ASC
+					}
+				},
+				type: {
+					type: constant.TYPE_CHAR + '(20)',
+					require: true,
+					unique: true
+				},
+				data: {type: constant.TYPE_TEXT}
+			},
+			projects: {
+				id: {
+					type: constant.TYPE_INT,
+					pk: {
+						order: constant.ASC
+					}
+				},
+				name: {
+					type: constant.TYPE_CHAR + '(100)',
+					require: true,
+					unique: true
+				},
+			},
+			storage: {
+				id: {
+					type: constant.TYPE_INT,
+					pk: {
+						order: constant.ASC
+					}
+				},
+				category: {
+					id: {
+						type: constant.TYPE_INT,
+						require: true
+					},
+				},
+				title: {
+					type: constant.TYPE_CHAR,
+					require: true
+				},
+				login: {
+					type: constant.TYPE_CHAR,
+					require: true
+				},
+				pass: {
+					type: constant.TYPE_CHAR
+				},
+				answer: {type: constant.TYPE_CHAR},
+				desc: {type: constant.TYPE_TEXT}
+			},
+		};
+	},
+	runReact: function () {
+		if (!window.cordova) {
+			window.appReact();
+		} else {
+			window.cordova.appReact();
+		}
+	}
+
 };
 
 app.initialize();

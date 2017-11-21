@@ -1,0 +1,29 @@
+{
+  "name": "app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "crypto-js": "3.1.9-1",
+    "history": "4.6.1",
+    "material-ui": "0.18.1",
+    "material-ui-pagination": "1.1.2",
+    "material-ui-password-field": "1.2.0",
+    "react": "15.6.1",
+    "react-dom": "15.6.1",
+    "react-redux": "5.0.4",
+    "react-router": "4.1.1",
+    "react-router-dom": "4.1.1",
+    "react-router-redux": "4.0.8",
+    "react-scripts": "1.0.17",
+    "react-spinner-material": "1.0.12",
+    "react-tap-event-plugin": "2.0.1",
+    "redux": "3.6.0",
+    "redux-devtools-extension": "2.13.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

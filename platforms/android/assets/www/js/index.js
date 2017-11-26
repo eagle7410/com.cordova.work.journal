@@ -38,7 +38,7 @@ var app = {
 	receivedEvent: function (id) {
 		var that = this;
 
-		that._db = new window.BrowserDataBaseClass({name: 'pass_store'});
+		that._db = new window.BrowserDataBaseClass({name: 'work_journal'});
 		if (!window.cordova) {
 			window.cordova = {};
 		}
@@ -127,26 +127,27 @@ var app = {
 						order: constant.ASC
 					}
 				},
-				category: {
-					id: {
-						type: constant.TYPE_INT,
-						require: true
-					},
-				},
-				title: {
-					type: constant.TYPE_CHAR,
+				project: {
+					type: constant.TYPE_INT,
 					require: true
 				},
-				login: {
-					type: constant.TYPE_CHAR,
+				date_doit: {
+					type: constant.TYPE_CHAR + '(10)',
 					require: true
 				},
-				pass: {
-					type: constant.TYPE_CHAR
+				task: {
+					type: constant.TYPE_INT,
+					require: true
 				},
-				answer: {type: constant.TYPE_CHAR},
-				desc: {type: constant.TYPE_TEXT}
-			},
+				hours: {
+					type: constant.TYPE_DOUBLE,
+					require: true
+				},
+				hours_fact: {
+					type: constant.TYPE_DOUBLE,
+				},
+				comment : {type: constant.TYPE_TEXT}
+			}
 		};
 	},
 	runReact: function () {

@@ -10,8 +10,11 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "dependencies": {
+    "File": "^0.10.2",
     "cordova-android": "^6.3.0",
     "cordova-browser": "^5.0.1",
+    "cordova-plugin-file": "^5.0.0",
+    "cordova-plugin-file-transfer": "^1.7.0",
     "cordova-plugin-whitelist": "^1.3.3"
   },
   "cordova": {

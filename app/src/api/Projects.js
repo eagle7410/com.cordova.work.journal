@@ -1,4 +1,3 @@
-import {save, move, update, reqFull} from '../utils/Req'
 import Routes from '../const/apiRoutes'
 const type = Routes.prj;
 

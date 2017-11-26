@@ -42,7 +42,7 @@ const addRecord = async data => {
 	return newData;
 };
 
-const dataToCsv  = (data, fileName) => {
+const dataToCsv  = (state, data, fileName) => {
 
 	let content = `Task number;Project;Hours;Comment\n`;
 
@@ -52,7 +52,7 @@ const dataToCsv  = (data, fileName) => {
 		content += dataDay.tasks.map(task => `Task #${task.task};${task.project};Hours ${task.hours};"${task.comment.replace(/"/g,'\\"')}"\n`).join('');
 	}
 
-	download(content, fileName);
+	download(state, content, fileName);
 };
 
 export {addRecord, edit, del, list, dataToCsv};

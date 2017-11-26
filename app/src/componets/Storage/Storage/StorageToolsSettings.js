@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
+import {Alert} from '../../../const/Events'
 import RaisedButton from 'material-ui/RaisedButton'
 import Paper from 'material-ui/Paper'
 import Toggle from 'material-ui/Toggle'
@@ -45,7 +46,7 @@ const StorageToolsSettings = (state) => {
 			return row;
 		});
 
-		dataToCsv(data, `${Date.now()}-Export-csv-from-${filters.dateFrom}-to-${filters.dateTo}.csv`);
+		dataToCsv(state, data, `${Date.now()}-Export-csv-from-${filters.dateFrom}-to-${filters.dateTo}.csv`);
 	};
     const contentDates = () => {
 		switch (filters.filterDateMode) {
@@ -135,6 +136,15 @@ export default connect(
 		filters : state.storageFilters,
 		projects : state.storageProjects,
         storage : state.storage
+	}),
+	dispatch => ({
+		showAlert : (mess, type) => dispatch({
+			type : Alert.show,
+			data : {
+				message: mess,
+				status: type
+			}
+		})
 	})
 )(StorageToolsSettings);
 

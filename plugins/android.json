@@ -9,6 +9,12 @@
   "installed_plugins": {
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.cordova.work.journal"
+    },
+    "cordova-plugin-file": {
+      "PACKAGE_NAME": "com.cordova.work.journal"
+    },
+    "cordova-plugin-file-transfer": {
+      "PACKAGE_NAME": "com.cordova.work.journal"
     }
   },
   "dependent_plugins": {}

@@ -8,6 +8,6 @@ const routes = {
 };
 
 const afterAuth = routes.storage;
-const index     = routes.dataLoader;
+const index     = routes.login;
 
 export {routes, afterAuth, index};

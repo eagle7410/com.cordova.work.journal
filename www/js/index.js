@@ -38,13 +38,13 @@ var app = {
 	receivedEvent: function (id) {
 		var that = this;
 
-		that._db = new window.BrowserDataBaseClass({name: 'pass_store'});
+		that._db = new window.BrowserDataBaseClass({name: 'work_journal'});
 		if (!window.cordova) {
 			window.cordova = {};
 		}
 
 		window.cordova.db = that._db;
-		that._db.drop();
+
 		that._db.init(that._db_struct())
 			.then(function () {
 				return that._db.getAll('users');
@@ -132,7 +132,7 @@ var app = {
 					require: true
 				},
 				date_doit: {
-					type: constant.constant.TYPE_CHAR + '(10)',
+					type: constant.TYPE_CHAR + '(10)',
 					require: true
 				},
 				task: {
@@ -140,14 +140,14 @@ var app = {
 					require: true
 				},
 				hours: {
-					type: constant.constant.TYPE_DOUBLE,
+					type: constant.TYPE_DOUBLE,
 					require: true
 				},
 				hours_fact: {
-					type: constant.constant.TYPE_DOUBLE,
+					type: constant.TYPE_DOUBLE,
 				},
 				comment : {type: constant.TYPE_TEXT}
-			},
+			}
 		};
 	},
 	runReact: function () {

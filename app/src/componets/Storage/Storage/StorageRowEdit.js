@@ -32,36 +32,41 @@ const StorageRowEdit = (state) => {
 					</div>
 				</div>
 				<div style={styleBlockInCell}>
-					<span style={styleLabel}>Project :</span>{state.projects.list[row.project]}&nbsp;
-					<span style={styleLabel}>task :</span>
+					<div>
+						<span style={styleLabel}>Project :</span>{state.projects.list[row.project]}
+					</div>
+					<div>
+						<span style={styleLabel}>task :</span>
 						<TextField value={row.task} onChange={ev => state.onEditText('task', ev.target.value)} style = {styleTextFieldEdit} id={`edtP_${id}`} />
-					<br/>
-					<span style={styleLabel}>hours :</span>
+					</div>
+					<div>
+						<span style={styleLabel}>hours :</span>
 						<TextField value={row.hours} onChange={ev => state.onEditText('hours', ev.target.value)} style ={styleTextFieldEdit} id={`edtA_${id}`} />
-					&nbsp;
-					<span style={styleLabel}>hours_fact :</span>
+					</div>
+					<div>
+						<span style={styleLabel}>hours_fact :</span>
 						<TextField onChange={ev => state.onEditText('hours_fact', ev.target.value)} style={styleTextFieldEdit} id={`edtA_${id}`} value={row.hours_fact}/>
-					<br/>
-					Date doit:
-					<DatePicker
-						style={styleTextFieldEdit}
-						defaultDate={new Date(row.date_doit)}
-						rows={4}
-						hintText='Date doit'
-						onChange={(ev, date) => state.onEditText('date_doit', date)}
-					/><br/>
-
-
+					</div>
+					<div>
+						Date doit:
+						<DatePicker
+							style={styleTextFieldEdit}
+							defaultDate={new Date(row.date_doit)}
+							rows={4}
+							hintText='Date doit'
+							onChange={(ev, date) => state.onEditText('date_doit', date)}
+						/>
+					</div>
+					<div>
+						<TextField
+							hintText='Enter comment'
+							multiLine={true}
+							value={row.comment}
+							onChange={state.onEditDesc}
+						/>
+					</div>
 				</div>
 			 </TableRowColumn>
-			<TableRowColumn  >
-				<TextField
-					hintText='Enter comment'
-					multiLine={true}
-					value={row.comment}
-					onChange={state.onEditDesc}
-				/>
-			</TableRowColumn>
 		</TableRow>
 	);
 };

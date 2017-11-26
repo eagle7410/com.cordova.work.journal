@@ -18,8 +18,7 @@ const StorageTable = (state) => {
 			<Table fixedHeader={true} selectable={false}>
 				<TableHeader displaySelectAll={false}>
 					<TableRow >
-						<TableHeaderColumn >Actions, Main data</TableHeaderColumn>
-						<TableHeaderColumn >Comment</TableHeaderColumn>
+						<TableHeaderColumn >Actions, Info</TableHeaderColumn>
 					</TableRow>
 				</TableHeader>
 				<TableBody displayRowCheckbox={false} showRowHover={true}>

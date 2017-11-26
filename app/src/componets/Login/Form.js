@@ -15,7 +15,7 @@ const Form = (state) => (
 		    value={state.store.login}
 			errorText={state.store.errorLogin}
 		>
-			{state.store.list.map((login, inx)=> (<MenuItem key={`mi_${inx}`} value={login} primaryText={login} />))}
+			{state.store.list.map((login, inx) => (<MenuItem key={`mi_${inx}`} value={login} primaryText={login} />))}
 		</SelectField><br/>
 
 		<PasswordField

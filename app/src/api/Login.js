@@ -1,18 +1,37 @@
-import Routes from '../const/apiRoutes'
-import {get, status} from '../utils/Req'
 import {Auth} from '../const/Messages'
+import CryptoJS from 'crypto-js';
 
-const loginList = () => new Promise((ok, bad) =>
-	get(Routes.usrList)
-		.then(r => r._status === status.ok ? ok(r.data) : bad(), bad)
-);
+/**
+ * @type {BrowserDataBaseClass|*}
+ */
+const db = function () {
+	return window.cordova.db;
+};
 
-const auth = (login, pass) => new Promise((ok, bad) =>
-	get(Routes.auth, {login: login, pass: pass})
-		.then(
-			r => r._status === status.ok ? ok(r.data) : bad(Auth.passBad),
-			e => bad(Auth.passBad)
-		)
-);
+const loginList = async ()  => {
+	let users = await db().getAll('users');
+
+	let list = [];
+
+	users.map(user => list.push(user.login));
+
+	return list;
+
+};
+
+
+const auth = async (login, pass) => {
+
+	let hash = CryptoJS.HmacSHA256(pass, "IgorStcherbina");
+
+	let user = await db().getByRequire('users','login', login);
+
+	if (!user || user.pass !== hash.toString(CryptoJS.enc.Hex)) {
+		throw new Error(Auth.passBad);
+	}
+
+	return `${login}token`;
+
+};
 
 export {loginList, auth};

@@ -33,11 +33,11 @@ const StorageRowShow = (state) => {
 					</div>
 				</div>
 				<div style={styleBlockInCell}>
-					<span style={styleDataLabel}>Project :</span> {state.projects.list[row.project]}&nbsp;
-					<span style={styleDataLabel}>Task    :</span> {row.task}&nbsp;
-					<span style={styleDataLabel}>Date doit    :</span> {row.date_doit.substring(0, 10)}&nbsp;
-					<span style={styleDataLabel}>Hours     :</span> {row.hours}&nbsp;
-					<span style={styleDataLabel}>Hours_fact  :</span> {row.hours_fact}&nbsp;
+					<div><span style={styleDataLabel}>Project :</span> {state.projects.list[row.project]}</div>
+					<div><span style={styleDataLabel}>Task    :</span> {row.task}</div>
+					<div><span style={styleDataLabel}>Date doit    :</span> {row.date_doit.substring(0, 10)}</div>
+					<div><span style={styleDataLabel}>Hours     :</span> {row.hours}</div>
+					<div><span style={styleDataLabel}>Hours_fact  :</span> {row.hours_fact}</div>
 					<TextField
 						hintText='Enter comment'
 						multiLine={true}

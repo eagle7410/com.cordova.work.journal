@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
+import {Toolbar, ToolbarGroup, ToolbarSeparator} from 'material-ui/Toolbar';
 import TextField from 'material-ui/TextField';
 import {StorageFilters, Storage} from '../../../const/Events'
 import FloatingActionButton from 'material-ui/FloatingActionButton';

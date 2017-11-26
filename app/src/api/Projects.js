@@ -1,5 +1,3 @@
-import Routes from '../const/apiRoutes'
-const type = Routes.prj;
 
 /**
  * @type {BrowserDataBaseClass}
